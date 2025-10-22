@@ -162,12 +162,12 @@ go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@v1.6.0
 # Create service file
 sudo bash -c "cat > /etc/systemd/system/layerd.service" << EOF
 [Unit]
-Description=layer node service
+Description=Tellor node service
 After=network-online.target
 
 [Service]
 User=$USER
-ExecStart=$(which cosmovisor) run start --home $HOME/.layer
+ExecStart=$(which cosmovisor) run start --home $HOME/.layer --keyring-backend test  --key-name $TELLOR_WALLET --api.enable --api.swagger
 Restart=on-failure
 RestartSec=10
 LimitNOFILE=65535
